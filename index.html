@@ -1,55 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Anood's Store</title>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <title>Guestbook</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Add producttttttt</h1>
+<h2>Guestbook</h2>
+<form id="guestForm">
+    Name: <input type="text" id="name" required><br>
+    Message: <input type="text" id="message" required><br>
+    <button type="submit">Submit</button>
+</form>
 
-  <form id="productForm">
-    <input type="text" id="productName" placeholder="Product Name" required /><br /><br />
-    <input type="number" id="productPrice" placeholder="Price" required /><br /><br />
-    <button type="submit">Add Product</button>
-  </form>
+<h3>Messages:</h3>
+<div id="messages"></div>
 
-  <script>
-    const firebaseConfig = {
-
-  apiKey: "AIzaSyDKVykabkbpBev2jSj4imdFjVYxhLWIj6c",
-  authDomain: "cysg2-955fb.firebaseapp.com",
-  projectId: "cysg2-955fb",
-  storageBucket: "cysg2-955fb.firebasestorage.app",
-  messagingSenderId: "968771628850",
-  appId: "1:968771628850:web:c1642940ad1d600d71312b"
-};
-
-
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    // التعامل مع الفورم
-    const form = document.getElementById("productForm");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      console.log("Form submitted!"); // << هذه الرسالة ستظهر في Console لتأكيد عمل الحدث
-
-      const name = document.getElementById("productName").value;
-      const price = parseFloat(document.getElementById("productPrice").value);
-
-      try {
-        await db.collection("products").add({ name, price });
-        alert("✅ Product added successfully!");
-        form.reset();
-      } catch (err) {
-        alert("❌ Error: " + err.message);
-      }
-    });
-  </script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
